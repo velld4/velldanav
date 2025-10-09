@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Latihan Link</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+   </style>
+    <script>
+        // Fungsi untuk alert klik link JavaScript
+        function alertKlik() {
+            alert("Selamat belajar HTML Link!");
+        }
+        // Fungsi untuk alert hover link JavaScript
+        function alertHover() {
+            alert("Kamusudah di link yang dituju!");
+        }
+    </script>
+</head>
+<body>
+
+    <!-- 1. Link Internal -->
+    <nav>
+        <a href="#profil">Profil</a>
+        <a href="#galeri">Galeri</a>
+        <a href="#kontak">Kontak</a>
+    </nav>
+
+    <section id="profil">
+        <h2>Profil</h2>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui inventore quasi eaque aliquid commodi. Maxime ab similique quae maiores cupiditate esse molestias dignissimos! Eligendi consectetur incidunt alias culpa a ullam.</p>
+    </section>
+
+    <section id="galeri">
+        <h2>Galeri</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi, et soluta dignissimos error illo nisi ut non quas odio laboriosam autem numquam voluptas officia deserunt iusto minus veniam assumenda tempore.</p>
+    </section>
+
+    <section id="kontak">
+        <h2>Kontak</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, sequi, totam quo dolor quisquam repudiandae nulla eaque sapiente odio accusantium nemo iste illo reprehenderit dignissimos, quaerat necessitatibus nostrum harum asperiores.</p>
+    </section>
+
+    <hr />
+
+    <!-- 2. Link Eksternal -->
+    <p>
+        <a href="https://www.hoyolab.com/home" target="_blank" rel="noopener noreferrer">claim daily dlu brow</a>
+    </p>
+
+    <hr />
+
+    <!-- 3. Link Frame di Satu Halaman yang Sama -->
+    <h2>Link Frame</h2>
+    <div id="frame-container">
+        <div id="frame-links">
+            <a href="KAJU.jpeg" target="frame-content">KAJUHA</a>
+            <a href="OIP.jpeg" target="frame-content">HYSILEN</a>
+            <a href="PURI.jpeg" target="frame-content">FURINAA</a>
+        </div>
+        <iframe id="frame-content" name="frame-content" src="index.html" width="300" height="250" title="Frame Konten"></iframe>
+    </div>
+
+    <hr />
+
+    <!-- 5. Link Download File -->
+    <h2>Download File</h2>
+    <p>
+        <a href="hysilens-honkai-star-rail.webp" download class="download-link">Download hisilen</a>
+    </p>
+
+    <hr />
+
+    <!-- 6. Link JavaScript -->
+    <h2>Link JavaScript</h2>
+    <p>
+        <a href="javascript:void(0)" onclick="alertKlik()">Klik aku kk</a>
+    </p>
+    <p>
+        <a href="javascript:void(0)" onmouseover="alertHover()">sini bg</a>
+    </p>
+
+    <hr />
+
+    <!-- 7. Link Email -->
+    <h2>Link Email</h2>
+    <p>
+        <a href="mailto:vellsukamartabak@gmail.com?subject=Belajar%20Link%20HTML">Kirim Email</a>
+    </p>
+
+</body>
+</html>
