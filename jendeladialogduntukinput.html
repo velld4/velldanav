@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Profil Sekolah • Neon Galaxy</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+
+    background:
+    radial-gradient(circle at top,#312e81,#020617 60%),
+    linear-gradient(135deg,#020617,#0f172a,#111827);
+
+    color:white;
+
+    padding:25px;
+
+    position:relative;
+}
+
+/* ========================= */
+/* BINTANG */
+/* ========================= */
+
+.star{
+    position:fixed;
+
+    width:2px;
+    height:2px;
+
+    background:white;
+
+    border-radius:50%;
+
+    animation:kelapKelip 4s infinite alternate;
+}
+
+@keyframes kelapKelip{
+
+    from{
+        opacity:.2;
+        transform:scale(.6);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.8);
+    }
+}
+
+/* ========================= */
+/* PLANET */
+/* ========================= */
+
+.planet{
+
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle at 30% 30%,
+    rgba(0,255,255,.8),
+    rgba(123,97,255,.2),
+    transparent 70%);
+
+    top:-180px;
+    right:-180px;
+
+    filter:blur(10px);
+
+    animation:planetMove 10s ease-in-out infinite alternate;
+
+    z-index:-1;
+}
+
+@keyframes planetMove{
+
+    from{
+        transform:translateY(0px);
+    }
+
+    to{
+        transform:translateY(40px);
+    }
+}
+
+/* ========================= */
+/* TOMBOL BACK */
+/* ========================= */
+
+.btn-back{
+
+    position:fixed;
+
+    top:20px;
+    left:20px;
+
+    border:none;
+
+    padding:12px 22px;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(90deg,#00f5ff,#7c3aed);
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    z-index:9999;
+
+    transition:.3s;
+
+    box-shadow:0 10px 25px rgba(0,255,255,.35);
+}
+
+.btn-back:hover{
+
+    transform:translateY(-5px) scale(1.05);
+
+    box-shadow:0 15px 35px rgba(0,255,255,.5);
+}
+
+/* ========================= */
+/* CONTAINER */
+/* ========================= */
+
+.app{
+
+    max-width:1200px;
+
+    margin:auto;
+}
+
+/* ========================= */
+/* HEADER */
+/* ========================= */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+    margin-bottom:40px;
+}
+
+.logo-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+}
+
+.logo{
+
+    width:90px;
+    height:90px;
+
+    border-radius:28px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    font-size:42px;
+
+    background:
+    linear-gradient(135deg,#00f5ff,#7c3aed);
+
+    animation:float 3s ease-in-out infinite;
+
+    box-shadow:0 0 40px rgba(0,255,255,.4);
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+.title h1{
+
+    font-size:2.7em;
+
+    background:
+    linear-gradient(90deg,#fff,#00f5ff);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.title p{
+
+    opacity:.7;
+
+    margin-top:5px;
+}
+
+/* ========================= */
+/* BUTTON MODE */
+/* ========================= */
+
+.toggle{
+
+    display:flex;
+
+    gap:12px;
+}
+
+.toggle button{
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.10);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.toggle button:hover{
+
+    transform:scale(1.08);
+
+    background:rgba(255,255,255,.18);
+}
+
+/* ========================= */
+/* GRID */
+/* ========================= */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:25px;
+}
+
+/* ========================= */
+/* CARD */
+/* ========================= */
+
+.card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:24px;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(16px);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    transition:.4s;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.4);
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180%;
+    height:180%;
+
+    background:
+    linear-gradient(
+    135deg,
+    transparent,
+    rgba(255,255,255,.08),
+    transparent);
+
+    top:-120%;
+    left:-120%;
+
+    transition:.8s;
+}
+
+.card:hover::before{
+
+    top:100%;
+    left:100%;
+}
+
+.card:hover{
+
+    transform:
+    translateY(-10px)
+    scale(1.03);
+
+    box-shadow:
+    0 15px 40px rgba(0,255,255,.25);
+}
+
+/* ========================= */
+/* LABEL */
+/* ========================= */
+
+.label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:13px;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    color:#00f5ff;
+
+    margin-bottom:10px;
+
+    font-weight:600;
+}
+
+.value{
+
+    line-height:1.8;
+
+    font-size:15px;
+
+    opacity:.9;
+}
+
+a{
+
+    color:#00f5ff;
+
+    text-decoration:none;
+
+    font-weight:bold;
+}
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+
+footer{
+
+    margin-top:50px;
+
+    text-align:center;
+
+    opacity:.7;
+
+    padding-bottom:20px;
+}
+
+/* ========================= */
+/* BLACK HOLE EFFECT */
+/* ========================= */
+
+.blackhole{
+
+    position:fixed;
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,#000 20%,#00f5ff 60%,transparent 70%);
+
+    pointer-events:none;
+
+    animation:hole .9s ease-out forwards;
+
+    z-index:99999;
+}
+
+@keyframes hole{
+
+    to{
+        transform:scale(45);
+        opacity:0;
+    }
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media(max-width:700px){
+
+    .topbar{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .title h1{
+
+        font-size:2em;
+    }
+
+    .logo{
+
+        width:75px;
+        height:75px;
+
+        font-size:35px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PLANET -->
+<div class="planet"></div>
+
+<!-- BINTANG -->
+<script>
+
+for(let i=0;i<90;i++){
+
+    const star=document.createElement("div");
+
+    star.className="star";
+
+    star.style.left=Math.random()*100+"vw";
+
+    star.style.top=Math.random()*100+"vh";
+
+    star.style.animationDuration=
+    (2+Math.random()*4)+"s";
+
+    document.body.appendChild(star);
+}
+
+</script>
+
+<!-- BUTTON BACK -->
+
+<button class="btn-back" onclick="kembali()">
+    ⬅ Back
+</button>
+
+<script>
+
+function kembali(){
+
+    window.location.href="index.html";
+}
+
+/* SAPA USER */
+
+let nama = prompt("👋 Halo, siapa nama kamu?","");
+
+if(nama){
+
+    alert("Selamat datang "+nama+" 🚀");
+}
+
+/* KONFIRMASI */
+
+let yakin = confirm("Apakah ingin membuka website resmi sekolah?");
+
+if(yakin){
+
+    window.open(
+    "https://smkn1purwokerto.sch.id/",
+    "_blank"
+    );
+}
+
+</script>
+
+<div class="app">
+
+<!-- HEADER -->
+
+<div class="topbar">
+
+    <div class="logo-box">
+
+        <div class="logo">
+            🏫
+        </div>
+
+        <div class="title">
+
+            <h1>Profil Sekolah</h1>
+
+            <p>
+                SMK Negeri 1 Purwokerto 
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- TOGGLE -->
+
+    <div class="toggle">
+
+        <button onclick="lightMode()">
+            ☀ Light
+        </button>
+
+        <button onclick="darkMode()">
+            🌙 Dark
+        </button>
+
+    </div>
+
+</div>
+
+<!-- GRID -->
+
+<div class="grid">
+
+<div class="card">
+<div class="label">🏫 Nama Sekolah</div>
+<div class="value">
+SMK Negeri 1 Purwokerto
+</div>
+</div>
+
+<div class="card">
+<div class="label">📍 Alamat</div>
+<div class="value">
+Jl. Dr. Soeparno No.29, Banyumas, Jawa Tengah
+</div>
+</div>
+
+<div class="card">
+<div class="label">📚 Jurusan</div>
+<div class="value">
+AKL, MPLB, TF, PM, DKV, PPLG, TJKT
+</div>
+</div>
+
+<div class="card">
+<div class="label">👨‍🎓 Jumlah Siswa</div>
+<div class="value">
+2128 Siswa
+</div>
+</div>
+
+<div class="card">
+<div class="label">🌐 Website</div>
+<div class="value">
+<a href="https://smkn1purwokerto.sch.id/"
+target="_blank">
+Kunjungi Website
+</a>
+</div>
+</div>
+
+<div class="card">
+<div class="label">👨‍🏫 Jumlah Guru</div>
+<div class="value">
+120 Guru
+</div>
+</div>
+
+<div class="card">
+<div class="label">⚽ Ekstrakurikuler</div>
+<div class="value">
+Badminton, Pramuka, English Club, dll
+</div>
+</div>
+
+<div class="card">
+<div class="label">🏢 Fasilitas</div>
+<div class="value">
+Lab, Masjid, Perpustakaan, Lapangan
+</div>
+</div>
+
+<div class="card">
+<div class="label">🧑‍💼 Kepala Sekolah</div>
+<div class="value">
+Drs. Witoto
+</div>
+</div>
+
+<div class="card">
+<div class="label">💻 Kapro TJKT</div>
+<div class="value">
+Ichsan Romdhona, S.Pd.
+</div>
+</div>
+
+<div class="card">
+<div class="label">👩‍🏫 Wali Kelas</div>
+<div class="value">
+Dwi Prastanti Fajriatun, S.Pd.
+</div>
+</div>
+
+<div class="card">
+<div class="label">🖥 Guru Wali</div>
+<div class="value">
+Seno Nugroho, S.Kom
+</div>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+✨ © 2026 SMK Negeri 1 Purwokerto 
+
+</div>
+
+<script>
+
+/* LIGHT MODE */
+
+function lightMode(){
+
+    document.body.style.background=
+    "linear-gradient(135deg,#67e8f9,#a855f7,#ffffff)";
+
+    document.body.style.color="#111";
+}
+
+/* DARK MODE */
+
+function darkMode(){
+
+    document.body.style.background=
+    "radial-gradient(circle at top,#312e81,#020617 60%), linear-gradient(135deg,#020617,#0f172a,#111827)";
+
+    document.body.style.color="white";
+}
+
+/* BLACK HOLE EFFECT */
+
+document.addEventListener("click",(e)=>{
+
+    let hole=document.createElement("div");
+
+    hole.className="blackhole";
+
+    hole.style.left=e.clientX+"px";
+
+    hole.style.top=e.clientY+"px";
+
+    document.body.appendChild(hole);
+
+    setTimeout(()=>{
+        hole.remove();
+    },900);
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kalkulator Bangunan • Neon Space</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+:root{
+    --bg1:#0f172a;
+    --bg2:#1e293b;
+    --card:rgba(255,255,255,.08);
+
+    --cyan:#00f5ff;
+    --purple:#8b5cf6;
+    --pink:#ff4fd8;
+
+    --text:#ecfeff;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    background:
+    radial-gradient(circle at top left,#312e81,transparent 35%),
+    radial-gradient(circle at bottom right,#0ea5e9,transparent 35%),
+    linear-gradient(135deg,var(--bg1),var(--bg2));
+
+    color:var(--text);
+    position:relative;
+}
+
+/* ========================= */
+/* BINTANG BERGERAK */
+/* ========================= */
+
+.star{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    animation:kelip 3s infinite alternate;
+}
+
+@keyframes kelip{
+    from{
+        opacity:.2;
+        transform:scale(.5);
+    }
+    to{
+        opacity:1;
+        transform:scale(1.8);
+    }
+}
+
+/* ========================= */
+/* ORBIT */
+/* ========================= */
+
+.orbit{
+    position:absolute;
+    width:500px;
+    height:500px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    animation:putar 25s linear infinite;
+}
+
+.orbit::before{
+    content:"";
+    position:absolute;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:var(--cyan);
+    top:-9px;
+    left:50%;
+    box-shadow:0 0 20px var(--cyan);
+}
+
+@keyframes putar{
+    from{
+        transform:translate(-50%,-50%) rotate(0deg);
+    }
+    to{
+        transform:translate(-50%,-50%) rotate(360deg);
+    }
+}
+
+/* ========================= */
+/* CONTAINER */
+/* ========================= */
+
+.container{
+    position:relative;
+    z-index:5;
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+}
+
+.card{
+    width:420px;
+    max-width:95vw;
+
+    padding:28px;
+    border-radius:28px;
+
+    background:var(--card);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,.5),
+    inset 0 0 20px rgba(255,255,255,.04);
+
+    animation:muncul 1s ease;
+}
+
+@keyframes muncul{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ========================= */
+/* HEADER */
+/* ========================= */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.logoBox{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo{
+    width:60px;
+    height:60px;
+
+    border-radius:18px;
+
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:28px;
+
+    animation:float 3s ease-in-out infinite;
+
+    box-shadow:0 0 25px rgba(0,255,255,.5);
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+.title h1{
+    font-size:20px;
+}
+
+.title p{
+    font-size:12px;
+    opacity:.7;
+}
+
+.badge{
+    background:linear-gradient(90deg,var(--pink),var(--purple));
+    padding:8px 14px;
+    border-radius:999px;
+    font-size:12px;
+}
+
+/* ========================= */
+/* INPUT */
+/* ========================= */
+
+select,input{
+    width:100%;
+    margin-top:12px;
+
+    padding:14px;
+
+    border:none;
+    outline:none;
+
+    border-radius:14px;
+
+    color:white;
+
+    background:rgba(255,255,255,.10);
+
+    transition:.3s;
+}
+
+select:focus,
+input:focus{
+    transform:scale(1.02);
+    box-shadow:0 0 20px rgba(0,255,255,.4);
+}
+
+option{
+    color:black;
+}
+
+/* ========================= */
+/* BUTTON */
+/* ========================= */
+
+.row{
+    display:flex;
+    gap:10px;
+    margin-top:16px;
+}
+
+button{
+    flex:1;
+
+    padding:14px;
+
+    border:none;
+    border-radius:14px;
+
+    color:white;
+    cursor:pointer;
+
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-4px) scale(1.03);
+    box-shadow:0 10px 25px rgba(0,255,255,.3);
+}
+
+.alt{
+    background:rgba(255,255,255,.12);
+}
+
+/* ========================= */
+/* HASIL */
+/* ========================= */
+
+.hasil{
+    margin-top:18px;
+
+    background:rgba(0,0,0,.35);
+
+    border-radius:16px;
+
+    padding:15px;
+
+    text-align:center;
+
+    font-size:18px;
+
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%{
+        box-shadow:0 0 0 rgba(0,255,255,0);
+    }
+    50%{
+        box-shadow:0 0 25px rgba(0,255,255,.25);
+    }
+    100%{
+        box-shadow:0 0 0 rgba(0,255,255,0);
+    }
+}
+
+/* ========================= */
+/* SVG */
+/* ========================= */
+
+.stage{
+    margin-top:20px;
+
+    display:flex;
+    justify-content:center;
+}
+
+svg{
+    width:150px;
+    height:150px;
+
+    animation:spinSlow 12s linear infinite;
+}
+
+@keyframes spinSlow{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* ========================= */
+/* HISTORY */
+/* ========================= */
+
+.history{
+    margin-top:18px;
+
+    max-height:120px;
+
+    overflow:auto;
+
+    padding-right:4px;
+}
+
+.item{
+    background:rgba(255,255,255,.08);
+
+    padding:10px;
+
+    border-radius:12px;
+
+    margin-bottom:8px;
+
+    font-size:13px;
+
+    transition:.3s;
+}
+
+.item:hover{
+    transform:translateX(5px);
+    background:rgba(255,255,255,.14);
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media(max-width:600px){
+
+    .card{
+        padding:22px;
+    }
+
+    .header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ORBIT -->
+<div class="orbit"></div>
+
+<!-- BINTANG -->
+<script>
+for(let i=0;i<70;i++){
+
+    const s=document.createElement('div');
+
+    s.className='star';
+
+    s.style.left=Math.random()*100+'vw';
+    s.style.top=Math.random()*100+'vh';
+
+    s.style.animationDuration=(1+Math.random()*4)+'s';
+
+    document.body.appendChild(s);
+}
+</script>
+
+<div class="container">
+
+<div class="card">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="logoBox">
+
+            <div class="logo">
+                🚀
+            </div>
+
+            <div class="title">
+                <h1>Kalkulator Bangunan</h1>
+                <p>Neon Space Edition</p>
+            </div>
+
+        </div>
+
+        <div class="badge">
+            Premium
+        </div>
+
+    </div>
+
+    <!-- INPUT -->
+
+    <select id="bangun" onchange="tampilInput()">
+        <option value="">-- Pilih Bangun --</option>
+        <option value="luasSegitiga">Luas Segitiga</option>
+        <option value="volumeKubus">Volume Kubus</option>
+        <option value="luasBola">Luas Bola</option>
+        <option value="volumeBola">Volume Bola</option>
+        <option value="luasKerucut">Luas Kerucut</option>
+        <option value="volumeKerucut">Volume Kerucut</option>
+    </select>
+
+    <div id="inputArea"></div>
+
+    <!-- BUTTON -->
+
+    <div class="row">
+        <button onclick="hitung()">Hitung</button>
+        <button class="alt" onclick="resetAll()">Reset</button>
+    </div>
+
+    <!-- HASIL -->
+
+    <div class="hasil" id="output">
+        Hasil = -
+    </div>
+
+    <!-- GAMBAR -->
+
+    <div class="stage" id="gambar"></div>
+
+    <!-- HISTORY -->
+
+    <div class="history" id="history"></div>
+
+</div>
+</div>
+
+<script>
+
+const $ = id => document.getElementById(id);
+
+function val(id){
+    return parseFloat($(id).value);
+}
+
+/* INPUT */
+
+function tampilInput(){
+
+    const p = $('bangun').value;
+
+    $('inputArea').innerHTML='';
+
+    if(p==='luasSegitiga'){
+        inputArea.innerHTML=`
+        <input id="alas" placeholder="Masukkan alas">
+        <input id="tinggi" placeholder="Masukkan tinggi">
+        `;
+    }
+
+    else if(p==='volumeKubus'){
+        inputArea.innerHTML=`
+        <input id="sisi" placeholder="Masukkan sisi">
+        `;
+    }
+
+    else if(p==='luasBola' || p==='volumeBola'){
+        inputArea.innerHTML=`
+        <input id="r" placeholder="Masukkan jari-jari">
+        `;
+    }
+
+    else if(p==='luasKerucut'){
+        inputArea.innerHTML=`
+        <input id="r" placeholder="Masukkan jari-jari">
+        <input id="s" placeholder="Masukkan garis pelukis">
+        `;
+    }
+
+    else if(p==='volumeKerucut'){
+        inputArea.innerHTML=`
+        <input id="r" placeholder="Masukkan jari-jari">
+        <input id="t" placeholder="Masukkan tinggi">
+        `;
+    }
+}
+
+/* HASIL */
+
+function setOut(teks){
+    $('output').innerHTML = teks;
+}
+
+/* HISTORY */
+
+function pushHistory(teks){
+
+    const item=document.createElement('div');
+
+    item.className='item';
+
+    item.innerText=teks;
+
+    $('history').prepend(item);
+}
+
+/* DRAW */
+
+function draw(type){
+
+    if(type==='segitiga'){
+
+        gambar.innerHTML=`
+        <svg viewBox="0 0 120 120">
+            <polygon points="10,100 110,100 60,10"
+            fill="#00f5ff"/>
+        </svg>`;
+    }
+
+    else if(type==='kubus'){
+
+        gambar.innerHTML=`
+        <svg viewBox="0 0 120 120">
+            <rect x="25" y="25"
+            width="70"
+            height="70"
+            fill="#8b5cf6"/>
+        </svg>`;
+    }
+
+    else if(type==='bola'){
+
+        gambar.innerHTML=`
+        <svg viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="35"
+            fill="#00f5ff"/>
+        </svg>`;
+    }
+
+    else if(type==='kerucut'){
+
+        gambar.innerHTML=`
+        <svg viewBox="0 0 120 120">
+            <polygon points="60,10 15,100 105,100"
+            fill="#ff4fd8"/>
+        </svg>`;
+    }
+
+}
+
+/* HITUNG */
+
+function hitung(){
+
+    const p=$('bangun').value;
+
+    let h;
+
+    if(p==='luasSegitiga'){
+
+        h=0.5*val('alas')*val('tinggi');
+
+        draw('segitiga');
+
+        setOut('Luas = '+h.toFixed(2));
+    }
+
+    else if(p==='volumeKubus'){
+
+        h=val('sisi')**3;
+
+        draw('kubus');
+
+        setOut('Volume = '+h.toFixed(2));
+    }
+
+    else if(p==='luasBola'){
+
+        h=4*Math.PI*val('r')**2;
+
+        draw('bola');
+
+        setOut('Luas = '+h.toFixed(2));
+    }
+
+    else if(p==='volumeBola'){
+
+        h=(4/3)*Math.PI*val('r')**3;
+
+        draw('bola');
+
+        setOut('Volume = '+h.toFixed(2));
+    }
+
+    else if(p==='luasKerucut'){
+
+        h=Math.PI*val('r')*(val('r')+val('s'));
+
+        draw('kerucut');
+
+        setOut('Luas = '+h.toFixed(2));
+    }
+
+    else if(p==='volumeKerucut'){
+
+        h=(1/3)*Math.PI*val('r')**2*val('t');
+
+        draw('kerucut');
+
+        setOut('Volume = '+h.toFixed(2));
+    }
+
+    pushHistory($('output').innerText);
+}
+
+/* RESET */
+
+function resetAll(){
+
+    $('bangun').value='';
+
+    $('inputArea').innerHTML='';
+
+    $('gambar').innerHTML='';
+
+    $('output').innerHTML='Hasil = -';
+}
+
+</script>
+
+</body>
+</html>

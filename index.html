@@ -1,95 +1,306 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Latihan Link</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-   </style>
-    <script>
-        // Fungsi untuk alert klik link JavaScript
-        function alertKlik() {
-            alert("Selamat belajar HTML Link!");
-        }
-        // Fungsi untuk alert hover link JavaScript
-        function alertHover() {
-            alert("Kamusudah di link yang dituju!");
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard Belajar JavaScript</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    min-height:100vh;
+    background:
+    radial-gradient(circle at top left,#ff512f,#dd2476,#1d2671);
+    overflow-x:hidden;
+    color:white;
+    position:relative;
+}
+
+/* ANIMASI BACKGROUND */
+
+body::before,
+body::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    filter:blur(90px);
+    z-index:-1;
+    animation:gerak 8s infinite alternate;
+}
+
+body::before{
+    width:350px;
+    height:350px;
+    background:#00f7ff;
+    top:-100px;
+    left:-100px;
+}
+
+body::after{
+    width:300px;
+    height:300px;
+    background:#ff00d4;
+    bottom:-100px;
+    right:-100px;
+}
+
+@keyframes gerak{
+    from{
+        transform:translateY(0px);
+    }
+    to{
+        transform:translateY(40px);
+    }
+}
+
+/* HEADER */
+
+.header{
+    padding:50px 20px 20px;
+}
+
+.logo{
+    width:100px;
+    height:100px;
+    margin:auto;
+    border-radius:25px;
+    background:linear-gradient(135deg,#00f7ff,#ff00d4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:45px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    animation:putar 5s linear infinite;
+}
+
+@keyframes putar{
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+h1{
+    margin-top:25px;
+    font-size:3em;
+    text-shadow:0 0 15px rgba(255,255,255,0.5);
+}
+
+.sub{
+    margin-top:10px;
+    opacity:0.8;
+    font-size:1.1em;
+}
+
+/* MENU */
+
+.menu{
+    width:90%;
+    max-width:1200px;
+    margin:40px auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:30px;
+}
+
+/* CARD */
+
+.card{
+    position:relative;
+    text-decoration:none;
+    color:white;
+    padding:35px 25px;
+    border-radius:25px;
+    overflow:hidden;
+
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,0.2);
+
+    transition:0.5s;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* efek cahaya */
+
+.card::before{
+    content:"";
+    position:absolute;
+    width:150%;
+    height:150%;
+    background:linear-gradient(
+        45deg,
+        transparent,
+        rgba(255,255,255,0.2),
+        transparent
+    );
+    top:-120%;
+    left:-120%;
+    transition:0.6s;
+}
+
+.card:hover::before{
+    top:100%;
+    left:100%;
+}
+
+/* hover card */
+
+.card:hover{
+    transform:translateY(-12px) scale(1.04);
+    border:1px solid rgba(255,255,255,0.4);
+    box-shadow:0 15px 35px rgba(0,0,0,0.5);
+}
+
+/* ICON */
+
+.icon{
+    font-size:55px;
+    margin-bottom:18px;
+    animation:naikTurun 2s infinite ease-in-out;
+}
+
+@keyframes naikTurun{
+    0%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+    100%{
+        transform:translateY(0);
+    }
+}
+
+.card h2{
+    font-size:1.3em;
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:14px;
+    opacity:0.8;
+    line-height:1.5;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:30px;
+    opacity:0.7;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+    h1{
+        font-size:2.2em;
+    }
+
+    .logo{
+        width:80px;
+        height:80px;
+        font-size:35px;
+    }
+
+    .menu{
+        width:92%;
+    }
+}
+
+</style>
 </head>
+
 <body>
 
-    <!-- 1. Link Internal -->
-    <nav>
-        <a href="#profil">Profil</a>
-        <a href="#galeri">Galeri</a>
-        <a href="#kontak">Kontak</a>
-    </nav>
+<!-- HEADER -->
 
-    <section id="profil">
-        <h2>Profil</h2>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui inventore quasi eaque aliquid commodi. Maxime ab similique quae maiores cupiditate esse molestias dignissimos! Eligendi consectetur incidunt alias culpa a ullam.</p>
-    </section>
+<div class="header">
 
-    <section id="galeri">
-        <h2>Galeri</h2>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi, et soluta dignissimos error illo nisi ut non quas odio laboriosam autem numquam voluptas officia deserunt iusto minus veniam assumenda tempore.</p>
-    </section>
-
-    <section id="kontak">
-        <h2>Kontak</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, sequi, totam quo dolor quisquam repudiandae nulla eaque sapiente odio accusantium nemo iste illo reprehenderit dignissimos, quaerat necessitatibus nostrum harum asperiores.</p>
-    </section>
-
-    <hr />
-
-    <!-- 2. Link Eksternal -->
-    <p>
-        <a href="https://www.hoyolab.com/home" target="_blank" rel="noopener noreferrer">claim daily dlu brow</a>
-    </p>
-
-    <hr />
-
-    <!-- 3. Link Frame di Satu Halaman yang Sama -->
-    <h2>Link Frame</h2>
-    <div id="frame-container">
-        <div id="frame-links">
-            <a href="KAJU.jpeg" target="frame-content">KAJUHA</a>
-            <a href="OIP.jpeg" target="frame-content">HYSILEN</a>
-            <a href="PURI.jpeg" target="frame-content">FURINAA</a>
-        </div>
-        <iframe id="frame-content" name="frame-content" src="index.html" width="300" height="250" title="Frame Konten"></iframe>
+    <div class="logo">
+        ⚡
     </div>
 
-    <hr />
+    <h1>Dashboard Belajar JavaScript</h1>
 
-    <!-- 5. Link Download File -->
-    <h2>Download File</h2>
-    <p>
-        <a href="hysilens-honkai-star-rail.webp" download class="download-link">Download hisilen</a>
+    <p class="sub">
+        Belajar coding lebih modern, interaktif, dan menyenangkan 🚀
     </p>
 
-    <hr />
+</div>
 
-    <!-- 6. Link JavaScript -->
-    <h2>Link JavaScript</h2>
-    <p>
-        <a href="javascript:void(0)" onclick="alertKlik()">Klik aku kk</a>
-    </p>
-    <p>
-        <a href="javascript:void(0)" onmouseover="alertHover()">sini bg</a>
-    </p>
+<!-- MENU -->
 
-    <hr />
+<div class="menu">
 
-    <!-- 7. Link Email -->
-    <h2>Link Email</h2>
-    <p>
-        <a href="mailto:vellsukamartabak@gmail.com?subject=Belajar%20Link%20HTML">Kirim Email</a>
-    </p>
+    <a href="fungsioutput.html" class="card">
+        <div class="icon">📤</div>
+        <h2>Fungsi Output</h2>
+        <p>Mempelajari cara menampilkan data di JavaScript.</p>
+    </a>
+
+    <a href="variabledantipedata.html" class="card">
+        <div class="icon">📦</div>
+        <h2>Variabel & Tipe Data</h2>
+        <p>Belajar menyimpan dan mengelola data.</p>
+    </a>
+
+    <a href="jendeladialogduntukinput.html" class="card">
+        <div class="icon">💬</div>
+        <h2>Input Dialog</h2>
+        <p>Mengambil input pengguna dengan prompt dan alert.</p>
+    </a>
+
+    <a href="operator.html" class="card">
+        <div class="icon">🧮</div>
+        <h2>Operator</h2>
+        <p>Operator matematika, logika, dan perbandingan.</p>
+    </a>
+
+    <a href="percabangan.html" class="card">
+        <div class="icon">🔀</div>
+        <h2>Percabangan</h2>
+        <p>Belajar pengambilan keputusan dengan if else.</p>
+    </a>
+
+    <a href="perulangan.html" class="card">
+        <div class="icon">🔁</div>
+        <h2>Perulangan</h2>
+        <p>Mengulang proses menggunakan loop JavaScript.</p>
+    </a>
+
+    <a href="strukturdanarray.html" class="card">
+        <div class="icon">📊</div>
+        <h2>Struktur & Array</h2>
+        <p>Mengelola kumpulan data secara efisien.</p>
+    </a>
+
+    <a href="fungsi.html" class="card">
+        <div class="icon">⚙️</div>
+        <h2>Fungsi</h2>
+        <p>Membuat program lebih rapi dan modular.</p>
+    </a>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+    ✨ Dibuat oleh Bukit | Belajar JavaScript Modern ✨
+</footer>
 
 </body>
 </html>
